@@ -13,11 +13,7 @@ export const addSquare = (canvas)=>{
             fill:'#1d96f7',
       
           })
-          rect.set({
-            cornerColor: 'red',
-            cornerStyle: 'circle',
-            transparentCorners: false,
-          });
+        
           canvas.add(rect)
         }
     
@@ -33,11 +29,7 @@ export const addCircle = (canvas)=>{
             originY: 'center',
             fill:'#1d95f7'
           });
-          circle.set({
-            cornerColor: 'red',
-            cornerStyle: 'circle',
-            transparentCorners: false,
-          });
+
           canvas.add(circle)
         }
       }

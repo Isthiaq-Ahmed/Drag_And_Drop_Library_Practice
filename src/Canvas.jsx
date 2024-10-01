@@ -9,6 +9,7 @@ import {removeObjects} from './fabric_manager/RemovingObjects'
 import SquareOutlinedIcon from '@mui/icons-material/SquareOutlined';
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
 import DeleteForever from '@mui/icons-material/DeleteForever';
+import Cancel from '@mui/icons-material/Cancel'
 
 
 
@@ -35,7 +36,7 @@ const CanvasComponent = () => {
       handleImageDrop(canvasContainerRef, canvas, ImageRef, .3)
       handleImageDrop(canvasContainerRef, canvas, ImageRef2, .1)
 
-      console.log(JSON.stringify(canvas));
+  
 
       
 
@@ -73,7 +74,7 @@ const CanvasComponent = () => {
       <Button 
     
      onClick={()=>{removeObjects(canvas)}}
-     variant="outlined"> close</Button>
+     variant="outlined"><Cancel/></Button>
       <img
       ref={ImageRef}
        draggable="true"
