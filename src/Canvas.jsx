@@ -41,7 +41,7 @@ const CanvasComponent = () => {
       handleImageDrop(canvasContainerRef, canvas, ImageRef, .3)
       handleImageDrop(canvasContainerRef, canvas, ImageRef2, .1)
 
-      // we use these canvas event listners to call the function canvasToJson to save canvas in json
+      // we use these canvas event listners to call the function canvasToJson to save canvas in json which is just currently loging the result to screen.
       canvas.on('object:modified', () => canvasToJson(canvas));
       canvas.on('object:added', () => canvasToJson(canvas));
       canvas.on('object:removed', () => canvasToJson(canvas)); 
