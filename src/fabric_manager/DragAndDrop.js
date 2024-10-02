@@ -11,7 +11,7 @@ export const handleImageDrop = (canvasContainerRef, canvas, ImageRef , imageScal
   
     // Drag over event
     const handleDragOver = (e) => {
-      e.preventDefault(); // Allow dropping by preventing default behavior
+      e.preventDefault(); 
       e.dataTransfer.dropEffect = 'copy';
     };
   
@@ -39,7 +39,7 @@ export const handleImageDrop = (canvasContainerRef, canvas, ImageRef , imageScal
         canvas.renderAll();
   
         draggedImage.classList.remove('img_dragging'); // Cleanup
-        draggedImage = null; // Reset the dragged image
+        draggedImage = null; // Reseting the dragged image
       }
     };
   

@@ -10,6 +10,7 @@ import SquareOutlinedIcon from '@mui/icons-material/SquareOutlined';
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
 import DeleteForever from '@mui/icons-material/DeleteForever';
 import Cancel from '@mui/icons-material/Cancel'
+import { canvasToJson } from './fabric_manager/canvasToJson';
 
 
 
@@ -22,23 +23,28 @@ const CanvasComponent = () => {
   const [canvas, setCanvas] = useState(null)
 
     ZoomInOutFunctionality(canvas)
+
+
     
 
       
   useEffect(() => {
-
+      // intializing the canvas
       const canvas = new fabric.Canvas(canvasRef.current,{
         width:500,
         height:400,
       });
+      // updateing the canvas state
       setCanvas(canvas)
 
+      // we use these function to functionality to images for drag and drop
       handleImageDrop(canvasContainerRef, canvas, ImageRef, .3)
       handleImageDrop(canvasContainerRef, canvas, ImageRef2, .1)
 
-  
-
-      
+      // we use these canvas event listners to call the function canvasToJson to save canvas in json
+      canvas.on('object:modified', () => canvasToJson(canvas));
+      canvas.on('object:added', () => canvasToJson(canvas));
+      canvas.on('object:removed', () => canvasToJson(canvas)); 
 
       // Cleanup on unmount
       return () => { 
@@ -51,14 +57,12 @@ const CanvasComponent = () => {
 
   return (
     <Box display={'flex'} alignItems={'center'} flexDirection={'column'} justifyContent={'center'} textAlign={'center'}  backgroundColor={'lightgray'} gap={2}  >
-    
       <Box sx={{backgroundColor: 'white'}} ref={canvasContainerRef}>
      <canvas  ref={canvasRef} style={{border:'1px dotted gray'}} ></canvas>
       </Box>
      <Box display={'flex'} gap={2} >
      <Button 
       onClick={()=>{addCircle(canvas)}}
-
       variant="outlined">
       <CircleOutlinedIcon/></Button>
      <Button 
@@ -70,9 +74,7 @@ const CanvasComponent = () => {
      onClick={()=>{canvas.clear()}}
      variant="outlined">
       <DeleteForever/></Button>
-
       <Button 
-    
      onClick={()=>{removeObjects(canvas)}}
      variant="outlined"><Cancel/></Button>
       <img
@@ -91,9 +93,7 @@ const CanvasComponent = () => {
        style={{height:50, width:50}}
        className='Image'
     />
-      
      </Box>
-
     </Box>
   );
 };
@@ -101,34 +101,3 @@ const CanvasComponent = () => {
 export default CanvasComponent;
 
 
-
-   // if(canvas){
-    //   canvas.on('dragleave',()=>{
-    //     console.log('draging')
-    //   })
-  
-    // }
-    // const handleDrag= () =>{
-    //   canvas.on('dragleave',(e)=>{
-    //     console.log('drag leave')
-    //     console.log(e.e.offsetX)
-    //     addCircle(canvas, e)
-    //   })
-      
-
-    // }
-    // if(canvas){
-    //   canvas.on('dragover',(e)=>{
-    //     console.log(e)
-    //   })
-    // }
-    // if(canvas){
-    //   console.log('code is runing')
-    //   fabric.FabricImage('/src/assets/img.jpg', function(oImg) {
-    //     // scale image down, and flip it, before adding it onto canvas
-    //     oImg.scale(0.5).set('flipX', true);
-    //     console.log(oImg)
-    //     canvas.add(oImg);
-    //   });
-
-    // }
