@@ -1,4 +1,5 @@
 import * as fabric from 'fabric'
+import { customControls } from './CustomControls';
 
 export const handleImageDrop = (canvasContainerRef, canvas, ImageRef , imageScaleFactor) => {
     let draggedImage = null; // Variable to track the dragged image
@@ -35,6 +36,7 @@ export const handleImageDrop = (canvasContainerRef, canvas, ImageRef , imageScal
           originY: 'center',
         });
         newImage.scale(imageScaleFactor);
+        customControls(newImage)
         canvas.add(newImage);
         canvas.renderAll();
   

@@ -1,16 +1,20 @@
 import * as fabric from 'fabric'
+
 import { useState, useRef,useEffect } from 'react';
+
 import { Box, Button } from '@mui/material';
+
 import ZoomInOutFunctionality  from './fabric_manager/ZoomInOut'
 import {addSquare, addCircle} from './fabric_manager/Shapes';
 import {handleImageDrop} from './fabric_manager/DragAndDrop'
 import {removeObjects} from './fabric_manager/RemovingObjects'
+import { canvasToJson } from './fabric_manager/canvasToJson';
 
 import SquareOutlinedIcon from '@mui/icons-material/SquareOutlined';
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
 import DeleteForever from '@mui/icons-material/DeleteForever';
 import Cancel from '@mui/icons-material/Cancel'
-import { canvasToJson } from './fabric_manager/canvasToJson';
+
 
 
 
@@ -22,10 +26,9 @@ const CanvasComponent = () => {
   const ImageRef2 = useRef(null)
   const [canvas, setCanvas] = useState(null)
 
-    ZoomInOutFunctionality(canvas)
+  //Zoom In out Fucntion
+  ZoomInOutFunctionality(canvas)
 
-
-    
 
       
   useEffect(() => {
@@ -33,15 +36,17 @@ const CanvasComponent = () => {
       const canvas = new fabric.Canvas(canvasRef.current,{
         width:500,
         height:400,
+        cornerStyle: 'circle',
       });
       // updateing the canvas state
       setCanvas(canvas)
+      
 
       // we use these function to functionality to images for drag and drop
       handleImageDrop(canvasContainerRef, canvas, ImageRef, .3)
       handleImageDrop(canvasContainerRef, canvas, ImageRef2, .1)
 
-      // we use these canvas event listners to call the function canvasToJson to save canvas in json which is just currently loging the result to screen.
+      // we use these canvas event listners to call the function canvasToJson to save canvas in json which is just currently loging the result to screen .
       canvas.on('object:modified', () => canvasToJson(canvas));
       canvas.on('object:added', () => canvasToJson(canvas));
       canvas.on('object:removed', () => canvasToJson(canvas)); 

@@ -1,5 +1,6 @@
 import * as fabric from 'fabric'
 
+import { customControls } from './CustomControls'
 
 export const addSquare = (canvas)=>{
         if(canvas){
@@ -11,10 +12,13 @@ export const addSquare = (canvas)=>{
             originX: 'center',
             originY: 'center',
             fill:'#1d96f7',
+            rx:10,
       
           })
-        
-          canvas.add(rect)
+
+        customControls(rect)
+        canvas.add(rect)
+   
         }
     
     }
@@ -27,9 +31,11 @@ export const addCircle = (canvas)=>{
             left:200,
             originX: 'center',
             originY: 'center',
-            fill:'#1d95f7'
+            fill:'#1d95f7',
+        
           });
 
+          customControls(circle)
           canvas.add(circle)
         }
       }
